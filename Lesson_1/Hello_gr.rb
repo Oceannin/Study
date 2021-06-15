@@ -1,0 +1,1 @@
+class Greeter   def initialize(name = 'Chelovek')    @name = name  end   def say_hi    'Privet #{@name}!'  end   def say_bye    'Poka #{@name}.'  endendputs say_hiputs say_byeg = Greeter.new('Vlad')g.say_hig.say_bye
