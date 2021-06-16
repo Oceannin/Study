@@ -1,22 +1,20 @@
 class Ticket
   def price
-   '250' 
+   puts 250 
   end
   def row
-   '4' 
+   puts 4 
   end
   def seat
-   '12' 
+   puts 12 
   end
   def event
-    'Такси4'
+    puts 'Такси4'
   end
 end
 
-ticket = Ticket.new
-
-puts ticket.class
-puts ticket.price
-puts ticket.row
-puts ticket.seat
-puts ticket.event
+t = Ticket.new
+t.price #250
+t.row #4
+t.seat #12
+t.event #Такси4
