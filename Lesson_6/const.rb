@@ -1,0 +1,4 @@
+CONST = 10
+puts CONST
+
+puts RUBY_VERSION
