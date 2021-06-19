@@ -1,7 +1,8 @@
 require 'date'
-require_relative 'lib/ticket'
-require_relative 'lib/user'
-require_relative 'lib/controller'
+require_relative '../lib/ticket'
+require_relative '../lib/user'
+require_relative '../lib/controller'
+require_relative '../lib/hello_world'
 
 ticket = Ticket.new
 ticket.set_name('Vlad')
@@ -14,6 +15,6 @@ user.set_ticket(ticket)
 controller = Controller.new
 controller.check(user)
 
-#puts user.name
-#puts user.ticket.date 
-#puts user.ticket.name 
+# puts user.name
+# puts user.ticket.date 
+# puts user.ticket.name 
