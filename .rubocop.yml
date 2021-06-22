@@ -1,0 +1,6 @@
+AllCops:
+  TargetRubyVersion: 3.0.1
+  Exclude:
+    - 'A:\Study\Lesson_5>' #путь к папке
+Style/AsciiComments: #пример, что можно отключить в комментариях
+  Enable: false 
