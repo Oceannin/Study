@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# подсмотрел кое-что с д.з на GitHub
 # Class Point
 class Point
   attr_accessor :arr
@@ -9,7 +8,7 @@ class Point
     @arr = arr
   end
 
-  def decide
+  def calc
     return false if arr.size != 4
 
     return unless arr.all?(&:number?)
@@ -29,7 +28,7 @@ end
 
 pointers = Point.new(['3', '6', '-1', '5'])
 puts "Координаты: #{pointers.arr}"
-result = pointers.decide.round(2)
+result = pointers.calc.round(2)
 if result != false
   puts "Результат вычисления: #{result} ед."
 else

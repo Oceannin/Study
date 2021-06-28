@@ -3,10 +3,10 @@
 require 'date'
 # Add Hello
 class Hello
-  MORNING = (DateTime.parse('06:00')...DateTime.parse('12:00'))
-  DAY = (DateTime.parse('12:00')...DateTime.parse('18:00'))
-  EVENING = (DateTime.parse('18:00')...DateTime.parse('00:00'))
-  NIGHT = (DateTime.parse('00:00')...DateTime.parse('06:00'))
+  MORNING = DateTime.parse('06:00')...DateTime.parse('12:00')
+  DAY = DateTime.parse('12:00')...DateTime.parse('18:00')
+  EVENING = DateTime.parse('18:00')...DateTime.parse('00:00')
+  NIGHT = DateTime.parse('00:00')...DateTime.parse('06:00')
 
   def hello
     return 'Доброе утро' if MORNING.cover?(DateTime.now)
@@ -16,4 +16,4 @@ class Hello
   end
 end
 
-puts "Текущее время: #{DateTime.new.hour}:#{DateTime.new.min}"
+puts "Текущее время: #{DateTime.now.hour}:#{DateTime.now.min}"
