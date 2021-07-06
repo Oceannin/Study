@@ -9,3 +9,9 @@ array = num.split(' ').map(&:to_i)
 array.each { |a| sum += a }
 
 puts "Результат суммирования: #{array.sum}"
+
+# def sum(*params)
+#     params.sum
+# end
+
+# puts sum(10, 10, 12)
