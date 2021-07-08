@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 print 'Введите первое число: '
-x = gets.to_i
+x = gets.to_f
 print 'Введите второе число: '
-y = gets.to_i
+y = gets.to_f
 
 z = begin
   x / y
