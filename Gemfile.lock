@@ -27,6 +27,7 @@ GEM
       parser (>= 3.0.1.1)
     ruby-progressbar (1.11.0)
     unicode-display_width (2.0.0)
+    unicode_utils (1.4.0)
 
 PLATFORMS
   ruby
@@ -36,6 +37,7 @@ DEPENDENCIES
   a1501da_birthday (~> 0.1.0)
   pry
   rubocop
+  unicode_utils
 
 BUNDLED WITH
    2.2.20
