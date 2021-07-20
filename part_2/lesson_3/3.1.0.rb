@@ -2,7 +2,7 @@
 require 'date'
 
 def week
-  week = gets.to_i
+  i = gets.to_i
   
 end
 
