@@ -1,14 +1,13 @@
-class lab
-  @@count = 0
-  @@materials = []
-
-  def perehod 
-    @@count += 1
-    @@materials << Material.new
-    @@materials.last
+def create
+  Material.new
+  if params[:status] == 'Open'
+    material.status = material.statuses.open!
   end
-
-  class Material
-# вот здесь надо подумать что происходит с веществом
+  if material.save
+    redirect_to material_path(@material)
+    flash[:success] = 'Hooray'
+  else
+    flash[:error] = 'Error'
+    redirect_to :back
   end
 end
