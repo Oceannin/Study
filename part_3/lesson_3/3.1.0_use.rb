@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 require_relative '3.1.0'
- 
+
 about = About.new
 news = News.new
 
