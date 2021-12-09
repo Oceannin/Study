@@ -2,6 +2,8 @@
 
 desc 'Вывод количества строк в файлах проекта'
 task :codestats do
-  line_count = Dir["**/*"].length
-  puts "#{line_count} строк в файлах."
+  num = 0
+  linerb = Dir.glob('**/*')
+  linerb.each { |f| num += File.readlines(f).count }
+  puts "#{num} строк в файлах."
 end
