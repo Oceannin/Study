@@ -1,0 +1,5 @@
+<% (1..4).each_with_index do |index, _val| %>
+  <% string = "#{index.to_s}. #{LoremIpsum.lorem_ipsum(300)}." %>
+  <%= content_tag(:p, string, class: "lead", style: "font-size: 0.96rem;") %>
+  <hr>
+<% end %>

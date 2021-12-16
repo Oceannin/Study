@@ -1,0 +1,14 @@
+logged_in:
+  about:
+    text: "About"
+    url: '/about'
+  help:
+    text: "Help"
+    url: '/help'
+  count:
+    text: "Count"
+    url: '/count'
+error_404:
+    text: "Erorr_404"
+    url: '/error_404'
+
