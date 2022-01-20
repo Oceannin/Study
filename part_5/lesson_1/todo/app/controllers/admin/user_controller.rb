@@ -10,7 +10,7 @@ module Admin
       @admin_users = policy_scope(
         User,
         policy_scope_class: Admin::UserPolicy::Scope
-      ).all
+      ).includes(:role).page(params[:page]).per(3)
     end
 
     # GET /admin/users/1 or /admin/users/1.json
