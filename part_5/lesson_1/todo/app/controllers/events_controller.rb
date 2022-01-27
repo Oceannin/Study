@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   # GET /events or /events.json
   def index
     @events = Event.includes(:items).page(params[:page]).per(3)
+    render 'events/index'
   end
 
   # GET /events/1 or /events/1.json
