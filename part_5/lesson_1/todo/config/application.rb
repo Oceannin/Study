@@ -12,24 +12,18 @@ require 'action_text/engine'
 require 'rails/test_unit/railtie'
 require 'sprockets/railtie'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module Todo
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.i18n.available_locales = %i[en ru]
+    config.i18n.default_locale = :ru
+    config.time_zone = 'Moscow'
+    config.i18n.load_path += Dir[Rails.root.join('vendor', 'locales', '**', '*.yml')]
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml')]
 
-    # Don't generate system test files.
     config.generators do |g|
       g.org             :active_record
       g.template_engine :slim
@@ -38,6 +32,7 @@ module Todo
       g.helper          false
       g.stylesheets     false
       g.javascript      false
+      g.factory_bot     dir: 'spec/factories'
     end
   end
 end
