@@ -5,7 +5,7 @@ default: &default
 
 development:
   <<: *default
-  database: todo_development
+  database: ocean
 
 test:
   <<: *default
