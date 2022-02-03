@@ -2,7 +2,9 @@
 
 module Admin
   class UsersController < Admin::ApplicationController
-    before_action :set_admin_user, only: %i[show edit update destroy]
+    before_action :set_admin_user, only: %i[show edit update destroy toggle]
+    # after_action :verify_authorized, except: :index
+    # after_action :verify_policy_scoped, only: :index
 
     # GET /admin/users or /admin/users.json
     def index
@@ -10,11 +12,18 @@ module Admin
       @admin_users = policy_scope(
         User,
         policy_scope_class: Admin::UserPolicy::Scope
-      ).includes(:role).page(params[:page]).per(3)
+      ).all
     end
 
     # GET /admin/users/1 or /admin/users/1.json
     def show; end
+
+    def toggle
+      authorize [:admin, @admin_user]
+      @admin_user.update_column(:active, !@admin_user.active)
+
+      respond_to { |format| format.json { head :no_content } }
+    end
 
     # GET /admin/users/new
     def new
@@ -62,19 +71,20 @@ module Admin
       authorize [:admin, @admin_user]
       @admin_user.destroy
       respond_to do |format|
-        format.html { redirect_to admin_users_url, notice: 'User was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
 
     private
 
+    # Use callbacks to share common setup or constraints between actions.
     def set_admin_user
       @admin_user = User.find(params[:id])
     end
 
+    # Only allow a list of trusted parameters through.
     def admin_user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :role_id)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
   end
 end
