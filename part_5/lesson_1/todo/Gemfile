@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
+
 gem 'adroit-age'
 gem 'rails_stats', '~> 1.0', '>= 1.0.2'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
@@ -15,21 +16,26 @@ gem 'kaminari'
 gem 'pg', '~> 1.1'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'devise-i18n', '~> 1.10', '>= 1.10.1'
-
+gem 'kaminari-i18n'
+gem 'pundit'
+gem 'bootstrap'
+gem 'jquery-rails'
+gem 'font-awesome-rails'
+gem 'grape'
+gem 'grape-entity'
 
 group :development, :test do
   gem 'ffaker'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'pry-byebug'
-  gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'factory_bot_rails'
   gem 'shoulda-matchers'
+  gem 'letter_opener'
 end
 
 group :development do
   gem 'web-console', '>= 4.1.0'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
-  gem 'faraday'
 end

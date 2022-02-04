@@ -1,8 +1,10 @@
-h1 Listing admin_users
+h1 = action_title(User, action_name)
 
-table
+table cellspacing=0
   thead
     tr
+      th
+      th
       th
       th
       th
@@ -12,17 +14,20 @@ table
 
   tbody
     - @admin_users.each do |user|
-      tr
+      tr style="background-color: #{ cycle('#ddd', '#fff') };"
         td = user.name
         td = user.email
         td = user.role.name
+        td
+          => user.events.count
+          = t('activerecord.models.event', count: user.events.count)
+        td
+          => user.items.count
+          = t('activerecord.models.item', count: user.items.count)
         td = link_to 'Show', admin_user_path(user)
         td = link_to 'Edit', edit_admin_user_path(user)
-        td
-          - if user.id != current_user.id
-            = link_to 'Destroy', admin_user_path(user), data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to 'Destroy', admin_user_path(user), data: { confirm: 'Are you sure?' }, method: :delete
 
-p
-  = link_to 'New User', new_admin_user_path
-p
-  = paginate @admin_users
+br
+
+= link_to 'New User', new_admin_user_path

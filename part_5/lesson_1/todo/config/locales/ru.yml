@@ -1,9 +1,26 @@
 ru:
-  label:
-    log_in: Вход
-    log_out: Выход
-    hello: Привет, %s
-    edit_profile: изменить профиль
-    registration: Регистрация
-  activerecord:
-    errors:
+  date:
+    formats:
+      default:
+        '%d.%m.%Y'
+  settings:
+    str: Привет, мир!
+    num: 42
+    flag: true
+  week:
+    - Понедельник
+    - Вторник
+    - Среда
+    - Четверг
+    - Пятница
+    - Суббота
+    - Воскресенье
+  aliases:
+    - &alias
+      datakey: dataval1
+      value: 1
+    -
+      datakey: dataval2
+      value: 2
+  config:
+    <<: *alias
