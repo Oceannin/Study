@@ -23,6 +23,7 @@ module Todo
     config.time_zone = 'Moscow'
     config.i18n.load_path += Dir[Rails.root.join('vendor', 'locales', '**', '*.yml')]
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml')]
+    config.paths.add Rails.root.join('app/services').to_s, eager_load: true
 
     config.generators do |g|
       g.org             :active_record
