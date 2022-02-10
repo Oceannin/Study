@@ -1,16 +1,16 @@
-# frozen_string_literal: true
-
 class User < ApplicationRecord
   include Rolable
+
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable
+
   before_destroy :log_before_destroy
   after_destroy :log_after_destroy
   before_validation :normalize_name, on: :create
   before_validation :set_role, on: %i[create update]
-  before_validation :normalize_email, if: proc { |u| u.email }
+  before_validation :normalize_email, if: Proc.new { |u| u.email }
 
   validates :email, :name, presence: true
   validates :email, :name, uniqueness: true
@@ -22,7 +22,6 @@ class User < ApplicationRecord
 
   belongs_to :role
   has_many :events, dependent: :destroy
-  has_many :items, through: :events
   has_many :comments, dependent: :destroy
   has_many :commented_events,
            through: :comments,
@@ -48,7 +47,21 @@ class User < ApplicationRecord
       token = Devise.friendly_token
       break token unless User.where(authentication_token: token).first
     end
+  end  
+
+  def attributes
+    { name: name, email: email }
   end
+
+  def description
+    "#{name} (#{email})"
+  end
+
+  def active_for_authentication?
+    super && active?
+  end
+
+  private
 
   def normalize_email
     self.email = email.downcase
@@ -59,7 +72,7 @@ class User < ApplicationRecord
   end
 
   def normalize_name
-    self.name = name.downcase.titleize
+    self.name = name&.downcase&.titleize
   end
 
   def log_before_destroy
