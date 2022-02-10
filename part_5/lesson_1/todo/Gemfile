@@ -27,6 +27,8 @@ gem 'grape-kaminari'
 gem 'grape-swagger'
 gem 'grape-swagger-entity'
 gem 'grape-swagger-representable'
+gem 'dotenv-rails'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'ffaker'

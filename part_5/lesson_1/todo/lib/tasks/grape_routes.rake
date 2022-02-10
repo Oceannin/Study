@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :grape do
   desc 'Condensed API Routes'
   task routes: :environment do
