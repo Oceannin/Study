@@ -29,6 +29,7 @@ gem 'grape-swagger-entity'
 gem 'grape-swagger-representable'
 gem 'dotenv-rails'
 gem 'whenever', require: false
+gem 'yard'
 
 group :development, :test do
   gem 'ffaker'
