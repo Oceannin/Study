@@ -30,6 +30,9 @@ gem 'grape-swagger-representable'
 gem 'dotenv-rails'
 gem 'whenever', require: false
 gem 'yard'
+gem 'letter_opener'
+gem 'resque'
+gem 'resque-scheduler'
 
 group :development, :test do
   gem 'ffaker'
@@ -38,7 +41,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_bot_rails'
   gem 'shoulda-matchers'
-  gem 'letter_opener'
+  gem 'simplecov', require: false
 end
 
 group :development do
