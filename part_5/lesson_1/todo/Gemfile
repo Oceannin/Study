@@ -34,6 +34,7 @@ gem 'letter_opener'
 gem 'resque'
 gem 'resque-scheduler'
 gem 'image_processing'
+gem 'activeadmin'
 
 group :development, :test do
   gem 'ffaker'

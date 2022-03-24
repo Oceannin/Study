@@ -26,7 +26,17 @@ module Todo
     config.i18n.load_path += Dir[Rails.root.join('vendor', 'locales', '**', '*.yml')]
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml')]
     config.paths.add Rails.root.join('app/services').to_s, eager_load: true
-
+    config.active_storage.content_types_allowed_inline = %w[
+      image/png
+      image/gif
+      image/jpg
+      image/jpeg
+      image/tiff
+      image/bmp
+      image/vnd.adobe.photoshop
+      image/vnd.microsoft.icon
+    ]
+    
     config.generators do |g|
       g.org             :active_record
       g.template_engine :slim

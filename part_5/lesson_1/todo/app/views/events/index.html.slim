@@ -1,11 +1,11 @@
-h1
-  = t(:events)
 
-table
+h1= t('activerecord.models.event')
+
+table.table.table-striped
   thead
     tr
-      th
-      th
+      th.text-center ID
+      th Дело
       th
 
   tbody
@@ -15,6 +15,5 @@ p
   = link_to t(:new_event), new_event_path
 p
   = link_to t(:about), about_index_path
-  == render 'shared/language_switch'
 p
   = paginate @events
