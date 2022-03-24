@@ -13,6 +13,10 @@ h2
     .hidden.red#email_error
       | Введите корректный электронный адрес
   .field
+    = f.label :avatar
+    br
+    = f.file_field :avatar  
+  .field
     = f.label :password
     - if @minimum_password_length
       em

@@ -33,6 +33,7 @@ gem 'yard'
 gem 'letter_opener'
 gem 'resque'
 gem 'resque-scheduler'
+gem 'image_processing'
 
 group :development, :test do
   gem 'ffaker'

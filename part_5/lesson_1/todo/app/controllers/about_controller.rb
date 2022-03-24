@@ -2,6 +2,7 @@ class AboutController < ApplicationController
   before_action :log_start, :log_params, :log_fihish, only: :index
 
   def index
+    @about = About.first
     session[:about_count] ||= 0
     session[:about_count] += 1
     I18n.locale = session[:locale] if I18n.available_locales.include? session[:locale]&.to_sym

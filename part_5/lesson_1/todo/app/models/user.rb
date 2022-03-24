@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   include Rolable
 
@@ -10,7 +12,7 @@ class User < ApplicationRecord
   after_destroy :log_after_destroy
   before_validation :normalize_name, on: :create
   before_validation :set_role, on: %i[create update]
-  before_validation :normalize_email, if: Proc.new { |u| u.email }
+  before_validation :normalize_email, if: proc { |u| u.email }
 
   validates :email, :name, presence: true
   validates :email, :name, uniqueness: true
@@ -32,6 +34,8 @@ class User < ApplicationRecord
            source: :commentable,
            source_type: :User
 
+  has_one_attached :avatar
+
   act_as_rolable
 
   before_save :ensure_authentication_token
@@ -47,7 +51,7 @@ class User < ApplicationRecord
       token = Devise.friendly_token
       break token unless User.where(authentication_token: token).first
     end
-  end  
+  end
 
   def attributes
     { name: name, email: email }
@@ -60,8 +64,6 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && active?
   end
-
-  private
 
   def normalize_email
     self.email = email.downcase

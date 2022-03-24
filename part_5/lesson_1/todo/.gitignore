@@ -37,3 +37,7 @@ yarn-debug.log*
 
 # Ignore yard doc
 /config/doc
+
+# Ignore storage
+/storage/*
+!/storage/.keep
