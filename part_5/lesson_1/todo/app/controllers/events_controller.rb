@@ -6,7 +6,12 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @events = policy_scope(Event).includes(:items).page(params[:page]).per(3)
+    Rack::MiniProfiler.step 'Загрузка событий' do
+      @events = policy_scope(Event)
+                  .includes(:items)
+                  .page(params[:page])
+
+    end
   end
 
   # GET /events/1 or /events/1.json
@@ -26,7 +31,7 @@ class EventsController < ApplicationController
 
   # POST /events or /events.json
   def create
-    @event = Event.new(event_params.merge(user: User.first))
+    @event = Event.new(event_params.merge(user: current_user))
 
     respond_to do |format|
       if @event.save
@@ -67,11 +72,11 @@ class EventsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.with_attached_files.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def event_params
-    params.require(:event).permit(:name, :content, :done, :user)
+    params.require(:event).permit(:name, :content, :done, :finished_at, :user, files: [])
   end
 end

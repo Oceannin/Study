@@ -1,15 +1,15 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require 'active_record/railtie'
-require 'active_storage/engine'
-require 'action_controller/railtie'
-require 'action_view/railtie'
-require 'action_mailer/railtie'
+require_relative 'boot'
+
+require 'rails'
+require 'active_model/railtie'
 require 'active_job/railtie'
-require 'action_cable/engine'
-require 'action_mailbox/engine'
-require 'action_text/engine'
-require 'rails/test_unit/railtie'
+require 'active_record/railtie'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'action_view/railtie'
+require 'active_storage/engine'
 require 'sprockets/railtie'
 
 Bundler.require(*Rails.groups)
@@ -23,20 +23,12 @@ module Todo
     config.i18n.available_locales = %i[en ru]
     config.i18n.default_locale = :ru
     config.time_zone = 'Moscow'
-    config.i18n.load_path += Dir[Rails.root.join('vendor', 'locales', '**', '*.yml')]
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml')]
-    config.paths.add Rails.root.join('app/services').to_s, eager_load: true
-    config.active_storage.content_types_allowed_inline = %w[
-      image/png
-      image/gif
-      image/jpg
-      image/jpeg
-      image/tiff
-      image/bmp
-      image/vnd.adobe.photoshop
-      image/vnd.microsoft.icon
-    ]
-    
+    config.i18n.load_path += Dir[Rails.root.join('vendor/locales/**/*.yml')]
+    config.paths.add Rails.root.join('app/api/helpers').to_s, eager_load: true
+    config.paths.add Rails.root.join('lib').to_s, eager_load: true
+    config.active_job.queue_adapter = :resque
+    config.active_storage.variant_processor = :mini_magick
+
     config.generators do |g|
       g.org             :active_record
       g.template_engine :slim

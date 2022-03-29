@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 ActiveAdmin.register Event do
   menu priority: 2
 
@@ -36,9 +34,7 @@ ActiveAdmin.register Event do
     panel 'Подпункты' do
       scope = resource.items.order(created_at: :desc)
       table_for scope do
-        column 'ID' do |item|
-          tag.a item.id, href: admin_item_path(item)
-        end
+        column 'ID', :id
         column 'Название', :name
         column 'Выполнено', :done
         column 'Срок выполнения', :finished_at

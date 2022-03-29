@@ -5,7 +5,6 @@ ru:
         '%d.%m.%Y'
   main_page: Главная страница
   about: О нас
-  new_event: Новое событие
   content: Содержимое параграфа
   current_date: Текущая дата
   visits: Посещения
@@ -17,7 +16,6 @@ ru:
     index: Список
     new: Создание
     edit: Редактирование
-    back: Назад
   settings:
     str: Привет, мир!
     num: 42
@@ -47,12 +45,6 @@ ru:
         email:                 Email
         name:                  Имя пользователя
         avatar:                Аватарка пользователя
-      event:
-        name:                  Заголовок
-        content:               Содержимое
-        done:                  Выполнено
-        items:                 Подразделы
-        files:                 Файлы        
     models:
       event: События
       user:

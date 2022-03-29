@@ -1,2 +1,11 @@
 en:
-  hello: "Hello world"
+  date:
+    formats:
+      default:
+        '%m/%d/%Y'
+  main_page: Main page
+  about: About
+  content: Content
+  current_date: Current date
+  visits: Visits
+  hello: Hello world

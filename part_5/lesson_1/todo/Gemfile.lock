@@ -71,10 +71,13 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    adroit-age (2.0.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     arbre (1.5.0)
       activesupport (>= 3.0.0, < 7.1)
       ruby2_keywords (>= 0.0.2, < 1.0)
+    ast (2.4.2)
     autoprefixer-rails (10.4.2.0)
       execjs (~> 2)
     bcrypt (3.1.16)
@@ -87,10 +90,19 @@ GEM
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
     byebug (11.1.3)
+    caxlsx (3.2.0)
+      htmlentities (~> 4.3, >= 4.3.4)
+      marcel (~> 1.0)
+      nokogiri (~> 1.10, >= 1.10.4)
+      rubyzip (>= 1.3.0, < 3)
     chronic (0.10.2)
+    coderay (1.1.3)
     concurrent-ruby (1.1.9)
+    config (4.0.0)
+      deep_merge (~> 1.2, >= 1.2.1)
+      dry-validation (~> 1.0, >= 1.0.0)
     crass (1.0.6)
-    declarative (0.0.20)
+    deep_merge (1.2.2)
     devise (4.8.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -114,17 +126,31 @@ GEM
     dry-core (0.7.1)
       concurrent-ruby (~> 1.0)
     dry-inflector (0.2.1)
+    dry-initializer (3.1.1)
     dry-logic (1.2.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.5, >= 0.5)
+    dry-schema (1.9.1)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.13, >= 0.13.0)
+      dry-core (~> 0.5, >= 0.5)
+      dry-initializer (~> 3.0)
+      dry-logic (~> 1.0)
+      dry-types (~> 1.5)
     dry-types (1.5.1)
       concurrent-ruby (~> 1.0)
       dry-container (~> 0.3)
       dry-core (~> 0.5, >= 0.5)
       dry-inflector (~> 0.1, >= 0.1.2)
       dry-logic (~> 1.0, >= 1.0.2)
+    dry-validation (1.8.0)
+      concurrent-ruby (~> 1.0)
+      dry-container (~> 0.7, >= 0.7.1)
+      dry-core (~> 0.5, >= 0.5)
+      dry-initializer (~> 3.0)
+      dry-schema (~> 1.9, >= 1.9.1)
     erubi (1.10.0)
-    et-orbi (1.2.6)
+    et-orbi (1.2.7)
       tzinfo
     execjs (2.8.1)
     factory_bot (6.2.0)
@@ -154,20 +180,10 @@ GEM
     grape-entity (0.10.1)
       activesupport (>= 3.0.0)
       multi_json (>= 1.3.2)
-    grape-kaminari (0.4.3)
-      grape (>= 1.6.1)
-      kaminari-grape
-    grape-swagger (1.4.2)
-      grape (~> 1.3)
-    grape-swagger-entity (0.5.1)
-      grape-entity (>= 0.6.0)
-      grape-swagger (>= 1.2.0)
-    grape-swagger-representable (0.2.2)
-      grape-swagger (>= 0.31.0)
-      representable
     has_scope (0.8.0)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
+    htmlentities (4.3.4)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -196,12 +212,6 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    kaminari-grape (1.0.1)
-      grape
-      kaminari-core (~> 1.0)
-    kaminari-i18n (0.5.0)
-      kaminari
-      rails
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -232,8 +242,19 @@ GEM
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    parallel (1.22.1)
+    parser (3.1.1.0)
+      ast (~> 2.4.1)
     pg (1.2.3)
     popper_js (2.9.3)
+    pry (0.13.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-byebug (3.9.0)
+      byebug (~> 11.0)
+      pry (~> 0.13.0)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
@@ -272,14 +293,16 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
-    rails_stats (1.0.2)
-      rake
+    rails-i18n (7.0.3)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     railties (6.1.4.1)
       actionpack (= 6.1.4.1)
       activesupport (= 6.1.4.1)
       method_source
       rake (>= 0.13)
       thor (~> 1.0)
+    rainbow (3.1.1)
     rake (13.0.6)
     ransack (2.6.0)
       activerecord (>= 6.0.4)
@@ -291,10 +314,7 @@ GEM
     redis (4.6.0)
     redis-namespace (1.8.1)
       redis (>= 3.0.4)
-    representable (3.1.1)
-      declarative (< 0.1.0)
-      trailblazer-option (>= 0.1.1, < 0.2.0)
-      uber (< 0.2.0)
+    regexp_parser (2.2.1)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -309,6 +329,10 @@ GEM
       redis (>= 3.3)
       resque (>= 1.27)
       rufus-scheduler (~> 3.2, < 3.7)
+    rexml (3.2.5)
+    roo (2.9.0)
+      nokogiri (~> 1)
+      rubyzip (>= 1.3.0, < 3.0.0)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.2)
@@ -326,9 +350,31 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
+    rubocop (1.26.1)
+      parallel (~> 1.10)
+      parser (>= 3.1.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.16.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.16.0)
+      parser (>= 3.1.1.0)
+    rubocop-performance (1.13.3)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
+    rubocop-rails (2.14.2)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.7.0, < 2.0)
+    rubocop-rspec (2.9.0)
+      rubocop (~> 1.19)
+    ruby-progressbar (1.11.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
+    rubyzip (2.3.2)
     rufus-scheduler (3.6.0)
       fugit (~> 1.1, >= 1.1.6)
     sass-rails (6.0.0)
@@ -372,10 +418,9 @@ GEM
     temple (0.8.2)
     thor (1.1.0)
     tilt (2.0.10)
-    trailblazer-option (0.1.2)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    uber (0.1.0)
+    unicode-display_width (2.1.0)
     vegas (0.1.11)
       rack (>= 1.0.0)
     warden (1.2.9)
@@ -390,14 +435,11 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    webrick (1.7.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     whenever (1.0.0)
       chronic (>= 0.6.3)
-    yard (0.9.27)
-      webrick (~> 1.7.0)
     zeitwerk (2.5.1)
 
 PLATFORMS
@@ -406,38 +448,41 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
-  adroit-age
+  annotate
   bootsnap (>= 1.4.4)
   bootstrap
   byebug
-  devise (~> 4.8, >= 4.8.1)
-  devise-i18n (~> 1.10, >= 1.10.1)
+  caxlsx
+  config
+  devise
+  devise-i18n
   dotenv-rails
   factory_bot_rails
   ffaker
   font-awesome-rails
   grape
   grape-entity
-  grape-kaminari
-  grape-swagger
-  grape-swagger-entity
-  grape-swagger-representable
   image_processing
   jbuilder (~> 2.7)
   jquery-rails
   kaminari
-  kaminari-i18n
   letter_opener
   listen (~> 3.3)
   pg (~> 1.1)
+  pry-byebug
+  pry-rails
   puma (~> 5.0)
   pundit
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
-  rails_stats (~> 1.0, >= 1.0.2)
+  rails-i18n
   resque
   resque-scheduler
+  roo
   rspec-rails
+  rubocop-performance
+  rubocop-rails
+  rubocop-rspec
   sass-rails (>= 6)
   shoulda-matchers
   simplecov
@@ -445,7 +490,6 @@ DEPENDENCIES
   web-console (>= 4.1.0)
   webpacker (~> 5.0)
   whenever
-  yard
 
 RUBY VERSION
    ruby 3.0.0p0
