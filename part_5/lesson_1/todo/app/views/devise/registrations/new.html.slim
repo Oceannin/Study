@@ -9,13 +9,11 @@ h2
   .field
     = f.label :email
     br
-    = f.text_field :email, autocomplete: "email"
-    .hidden.red#email_error
-      | Введите корректный электронный адрес
+    = f.email_field :email, autocomplete: "email"
   .field
     = f.label :avatar
     br
-    = f.file_field :avatar  
+    = f.file_field :avatar
   .field
     = f.label :password
     - if @minimum_password_length
