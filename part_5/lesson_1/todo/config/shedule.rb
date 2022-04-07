@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 set :chronic_options, hours24: true
 set :output, error: 'log/cron_error.log', standard: 'log/cron.log'
 

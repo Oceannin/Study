@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 require 'resque/server'
 
 Rails.application.routes.draw do
-  devise_for :users #, ActiveAdmin::Devise.config
+  devise_for :users # , ActiveAdmin::Devise.config
   mount RootApi => '/'
   mount Resque::Server.new, at: '/resque'
   post :toggle, to: 'locales#toggle'
